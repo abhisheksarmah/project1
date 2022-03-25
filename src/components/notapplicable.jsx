@@ -64,7 +64,7 @@ const detailsConfig = [
     building apps, `,
     className: "absolute md:top-[610px] md:right-[120px] icon4  columns-2",
     classTitle:
-      "top-8 titles3 md:font-semibold text-[24px] absolute -left-[255px]",
+      "top-8 titles2 md:font-semibold text-[24px] absolute -left-[255px]",
   },
 ];
 
@@ -73,6 +73,7 @@ export default function Section1() {
   const [displayPosition, setDisplayPosition] = useState(false);
   const [position, setPosition] = useState("center");
   const [sidebarText, setSidebarText] = useState(null);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   const dialogFuncMap = {
     displayPosition: setDisplayPosition,
@@ -88,25 +89,40 @@ export default function Section1() {
     dialogFuncMap[`${name}`](false);
   };
 
-  const handleSideBarOpen = (id) => {
-    setSidebarText(detailsConfig.find((item) => item.id === id).text);
-    if (isOpen) {
-    } else if (isOpen) {
-      setIsOpen(false);
-    } else if (!isOpen) {
+  const handleSideBarOpen = (status, id) => {
+    setButtonClicked(true);
+    console.log(status, id);
+    if (id) {
+      setSidebarText(detailsConfig.find((item) => item.id === id).text);
+    }
+    if (isOpen && status === true) {
       setIsOpen(true);
-    } else if (!isOpen) {
+    } else if (isOpen && status === false) {
+      setIsOpen(false);
+    } else if (!isOpen && status === true) {
+      setIsOpen(true);
     }
   };
   let containRef = useRef();
+  let sideBarRef = useRef();
 
   let handler = (event) => {
-    console.log(containRef.current);
-    console.log(event.target);
-    if (!containRef.current.contains(event.target)) {
+    console.log("button clicked", buttonClicked);
+    // console.log(containRef.current);
+    // console.log(sideBarRef.current);
+    // console.log(event.target);
+    if (
+      //   !containRef.current.contains(event.target) &&
+      !sideBarRef.current.contains(event.target) &&
+      buttonClicked === false
+    ) {
       setIsOpen(false);
+    } else {
+      // setButtonClicked(false);
     }
   };
+
+  useEffect(() => {}, [buttonClicked]);
 
   useEffect(() => {
     document.addEventListener("mousedown", handler);
@@ -119,34 +135,34 @@ export default function Section1() {
     <>
       <div className="bg-green-100 section1">
         <div
-          ref={containRef}
+          // ref={containRef}
           className={`sticky md:h-screen h-[100vh] w-2/3 bg-green-100 bg-contain secContainer bg-no-repeat ${
             !isOpen ? `mx-auto` : `mx-0`
           }`}
           style={{ backgroundImage: `url(${bg})` }}
         >
           {detailsConfig.map((item, index) => (
-            <div className={item.className} key={index}>
-              <span className={item.classTitle}>{item.title}</span>
-
-              <Detailed
-                handleOpen={handleSideBarOpen}
-                icon={item.icon}
-                id={item.id}
-                isOpen={isOpen}
-              />
-            </div>
+            <Detailed
+              handleOpen={handleSideBarOpen}
+              icon={item.icon}
+              id={item.id}
+              // text={item.text}
+              isOpen={isOpen}
+              className={item.className}
+              classTitle={item.classTitle}
+              title={item.title}
+            />
           ))}
         </div>
         {sidebarText ? (
-          <>
+          <div ref={sideBarRef}>
             <SideBar isOpen={isOpen} text={sidebarText} />
-          </>
+          </div>
         ) : null}
       </div>
-      <div className="sections1 pt-50 bg-green-100">
+      <div className="section2 bg-green-100">
         <div
-          className={`sticky md:h-screen h-[400px] w-2/3 mr-32  bg-green-100 bg-contain secContainer bg-no-repeat `}
+          className={`sticky md:h-screen h-[400px] w-2/3 mx-auto bg-green-100 bg-contain secContainer bg-no-repeat `}
           style={{ backgroundImage: `url(${bg})` }}
         >
           {detailsConfig.map((item, index) => (
@@ -156,15 +172,14 @@ export default function Section1() {
                 <Detailed icon={item.icon} text={item.text} />
               </div>
               <Dialog
+                header="Header"
                 visible={displayPosition}
                 position={position}
                 modal
-                className="h-[80px] fixed mx-auto w-screen "
+                className="h-[50%] w-[82%] mx-auto"
                 onHide={() => onHide("displayPosition")}
                 draggable={false}
-                resizable={false}
               >
-                <div className="flex justify-center"></div>
                 <p className="m-0">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -183,3 +198,107 @@ export default function Section1() {
     </>
   );
 }
+
+
+
+//SIDE BAR
+
+
+
+import React, { useEffect, useRef, useState } from "react";
+import { Button } from "primereact/button";
+
+export default function SideBar(props) {
+  // let sideRef = useRef();
+
+  // let handler = (event) => {
+  //   console.log(sideRef.current);
+  //   console.log(event.target);
+  //   if (!sideRef.current.contains(event.target)) {
+  //     handleSideBarOpen();
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", handler);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handler);
+  //   };
+  // }, []);
+  const handleSideBarOpen = () => {
+    props.handleOpen(false);
+  };
+  return (
+    <div>
+      {props.isOpen ? (
+        <Button
+          onClick={handleSideBarOpen}
+          icon="pi pi-times"
+          className="p-button-rounded p-button-secondary p-button-text p-2 z-10 absolute -bottom-[2210px] right-4"
+        />
+      ) : null}
+      <div
+        className={`-bottom-[2870px] absolute right-0 bg-green-200 w-[34vw] pt-6 px-3 h-[100vh] ${
+          props.isOpen ? "translate-x-0" : "translate-x-full"
+        } ease-in-out duration-700`}
+      >
+        <h1>{props.text}</h1>
+      </div>
+    </div>
+  );
+}
+
+
+//Detailed
+
+import React, { useEffect, useRef, useState } from "react";
+
+export default function Detailed(props) {
+  let buttonRef = useRef();
+
+  let handler = (event) => {
+    if (!buttonRef.current.contains(event.target)) {
+      props.handleOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  }, []);
+
+  const handleSideBarOpen = (e) => {
+    e.stopPropagation();
+    // if (props.isOpen) {
+    //   return;
+    // }
+    props.handleOpen(true, props.id);
+  };
+
+  return (
+    <>
+      <div className={props.className}>
+        <span className={props.classTitle}>{props.title}</span>
+        <button onClick={handleSideBarOpen} ref={buttonRef}>
+          <img
+            src={props.icon}
+            alt="props.icon"
+            className="lg:w-28 lg:h-28 transform hover:-translate-y-1 hover:scale-90 hover:cursor-pointer transition duration-500 ease-in-out "
+          />
+        </button>
+      </div>
+
+      {/* <div
+        ref={buttonRef}
+        className={`top-0 fixed right-0 bg-green-100 w-[34vw] pt-6 px-3 h-[200vh] ${
+          props.isOpen ? "translate-x-0" : "translate-x-full"
+        } ease-in-out duration-700`}
+      >
+        <h1>{props.text}</h1>
+      </div> */}
+    </>
+  );
+}
+

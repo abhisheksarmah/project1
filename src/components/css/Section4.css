@@ -1,0 +1,133 @@
+.section4 {
+  background-color: black;
+  height: 100vh;
+  margin-top: 0 !important;
+}
+div.p-divider {
+  display: none;
+}
+div.curve3 {
+  position: absolute;
+  height: 10px;
+  width: 100%;
+  bottom: -1185px;
+  z-index: 9;
+}
+.carousal2 {
+  display: none;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .section4 {
+    padding: 11px 25px !important;
+    height: 88vh;
+  }
+  .grn {
+    font-size: 15px !important;
+  }
+  .head2 {
+    font-size: 25px !important;
+  }
+  .para2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px !important;
+    text-align: justify;
+  }
+  .means {
+    width: 100%;
+    font-size: 15px !important;
+  }
+  .carousal2 {
+    display: block;
+    margin-top: 10px;
+  }
+  .part2 {
+    height: 25vh;
+    padding-top: 20px !important;
+  }
+  .card {
+    display: none;
+  }
+  button.btn1 {
+    border-radius: 50% !important;
+    width: 15px !important;
+    height: 15px !important;
+    background-color: white !important;
+  }
+  .indic {
+    top: 160px !important;
+    margin: 0 0 !important;
+  }
+  div.paraH {
+    padding-top: 40px !important;
+    width: 60% !important;
+  }
+  .paraI {
+    font-size: 11px;
+    width: 100%;
+  }
+  div.curve3 {
+    position: absolute;
+    height: 10px;
+    width: 100%;
+    bottom: -643px;
+    z-index: 9;
+  }
+}
+@media only screen and (min-device-width: 400px) and (max-device-width: 680px) and (-webkit-min-device-pixel-ratio: 2) {
+  .section4 {
+    padding: 11px 25px !important;
+    height: 75vh;
+  }
+  .grn {
+    font-size: 15px !important;
+  }
+  .head2 {
+    font-size: 25px !important;
+  }
+  .para2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px !important;
+    text-align: justify;
+  }
+  .means {
+    width: 100%;
+    font-size: 15px !important;
+  }
+  .carousal2 {
+    display: block;
+    margin-top: 10px;
+  }
+  .part2 {
+    height: 25vh;
+    padding-top: 20px !important;
+  }
+  .card {
+    display: none;
+  }
+  button.btn1 {
+    border-radius: 50% !important;
+    width: 15px !important;
+    height: 15px !important;
+    background-color: white !important;
+  }
+  .indic {
+    top: 160px !important;
+    margin: 0 0 !important;
+  }
+  div.paraH {
+    padding-top: 0 !important;
+    width: 60% !important;
+  }
+  .paraI {
+    font-size: 11px;
+    width: 100%;
+  }
+  .curve3 {
+    position: absolute;
+    height: 10px;
+    width: 100%;
+    bottom: -398px;
+    z-index: 9 !important;
+  }
+}

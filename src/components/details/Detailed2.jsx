@@ -1,70 +1,66 @@
-import React, { useState, useEffect, useRef } from "react";
-import icon3 from "../../Assets/images/Carbon Neutral Schools.png";
+import "primeicons/primeicons.css";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.css";
+import "primeflex/primeflex.css";
+import "../../index.css";
+import ReactDOM from "react-dom";
 
-export default function Detailed2(props) {
-  const [isOpen, setIsOpen] = useState(false);
-  let sideRef = useRef();
-  useEffect(() => {
-    let handler = (event) => {
-      if (!sideRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };
-  });
+import React, { useState } from "react";
+import { Dialog } from "primereact/dialog";
+import { Button } from "primereact/button";
+import "../Prim.css";
 
-  const handleSideBarOpen = () => {
-    setIsOpen(!isOpen);
-    props.handleOpen();
+const Detailed2 = () => {
+  const [displayPosition, setDisplayPosition] = useState(false);
+  const [position, setPosition] = useState("center");
+
+  const dialogFuncMap = {
+    displayPosition: setDisplayPosition,
   };
+
+  const onClick = (name, position) => {
+    dialogFuncMap[`${name}`](true);
+
+    if (position) {
+      setPosition(position);
+    }
+  };
+
+  const onHide = (name) => {
+    dialogFuncMap[`${name}`](false);
+  };
+
   return (
     <>
-      {!isOpen ? (
-        <div onClick={handleSideBarOpen}>
-          <img
-            src={icon3}
-            alt="icon3"
-            className="md:w-28 md:h-28 transform hover:-translate-y-1 hover:scale-90 hover:cursor-pointer transition duration-500 ease-in-out"
-          />
-        </div>
-      ) : (
-        <>
-          <button
-            className="text-xl text-white fixed top-4 right-4 z-10"
-            onClick={handleSideBarOpen}
-          >
-            x
-          </button>
-          <div onClick={handleSideBarOpen}>
-            <img
-              src={icon3}
-              alt="icon3"
-              className="md:w-28 md:h-28 transform hover:-translate-y-1 hover:scale-90 hover:cursor-pointer transition duration-500 ease-in-out"
-            />
-          </div>
-        </>
-      )}
-      <div
-        ref={sideRef}
-        className={`top-0 fixed right-0 bg-green-100 w-[32vw] pt-6 px-3 h-[200vh] ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        } ease-in-out duration-700`}
+      <Button
+        label="Right"
+        icon="pi pi-arrow-left"
+        onClick={() => onClick("displayPosition", "right")}
+        className="p-button-warning"
+      />
+
+      <Dialog
+        header="Header"
+        visible={displayPosition}
+        position={position}
+        modal
+        style={{ width: "50vw" }}
+        onHide={() => onHide("displayPosition")}
+        draggable={false}
+        resizable={false}
       >
-        <h3>
-          Hello One of my passions about being a software developer is
-          understanding and creating the unique features that we come across, as
-          a user, using an app or browsing a website. When I first started
-          building apps, Day/Night mode was on top of my list to understand.
-          Today, using this tutorial, I was able to create an animated sidebar
-          using Tailwind. This is my first time using Tailwind and I really
-          enjoyed the breakdown from James’ Youtube video. This tutorial
-          features React Hooks, useState, which is always great to implement in
-          a tutorial.
-        </h3>
-      </div>
+        <p className="m-0">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </Dialog>
     </>
   );
-}
+};
+
+export default Detailed2;

@@ -1,0 +1,29 @@
+.section5 {
+  height: 100vh;
+  margin-top: 90px;
+  background-color: white;
+  color: #000000;
+
+  z-index: 9999999;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .section5 {
+    margin-top: 35px !important;
+    width: 100vw !important;
+    padding: 0 25px !important;
+  }
+  .h1head {
+    font-size: 15px !important;
+  }
+  .h2head {
+    font-size: 25px !important;
+  }
+  .paraNep {
+    font-size: 15px !important;
+    text-align: justify;
+  }
+  .paraNep2 {
+    font-size: 15px !important;
+    text-align: justify;
+  }
+}
