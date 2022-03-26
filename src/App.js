@@ -18,7 +18,7 @@ function App() {
       <Section5 />
       <Section1 />
       <ContactUsForm />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
