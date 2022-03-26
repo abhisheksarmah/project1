@@ -27,7 +27,7 @@ const detailsConfig = [
     enjoyed the breakdown from James’ Youtube video. This tutorial
     features React Hooks, useState, which is always great to implement in
     a tutorial.`,
-    className: "absolute md:top-[30px] md:right-[126px] icon1 columns-2 ",
+    className: "absolute md:top-[4rem] md:right-[5rem] icon1 columns-2 ",
     classTitle:
       "top-10 titles md:font-semibold text-[24px] absolute -left-[210px]",
   },
@@ -36,7 +36,7 @@ const detailsConfig = [
     icon: icon2,
     title: "Experiential Learning",
     text: `testing going`,
-    className: "absolute md:top-[220px] md:-right-[15px] icon2 columns-2 ",
+    className: "absolute md:top-[17.5rem] md:-right-[6rem] icon2 columns-2 ",
     classTitle:
       "top-10 titles1 md:font-semibold text-[24px] absolute -left-[225px]",
   },
@@ -50,7 +50,7 @@ const detailsConfig = [
     building apps, Day/Night mode was on top of my list to understand.
     Today, using this tutorial, I was able to create an animated sidebar
     using Tailwind. `,
-    className: "absolute md:top-[420px] md:-right-[30px] icon3 columns-2 ",
+    className: "absolute md:bottom-[16.5rem] md:-right-[6rem] icon3 columns-2 ",
     classTitle:
       "top-10 titles2 md:font-semibold text-[24px] absolute -left-[255px]",
   },
@@ -62,7 +62,7 @@ const detailsConfig = [
     understanding and creating the unique features that we come across, as
     a user, using an app or browsing a website. When I first started
     building apps, `,
-    className: "absolute md:top-[610px] md:right-[120px] icon4  columns-2",
+    className: "absolute md:bottom-[2.5rem] md:right-[6rem] icon4  columns-2",
     classTitle:
       "top-8 titles3 md:font-semibold text-[24px] absolute -left-[255px]",
   },
@@ -73,13 +73,13 @@ export default function Section1() {
   const [sidebarText, setSidebarText] = useState(null);
 
   const handleSideBarOpen = (id) => {
-    setSidebarText(detailsConfig.find((item) => item.id === id).text);
+    if(id) {
+      setSidebarText(detailsConfig.find((item) => item.id === id).text);
+    }
     if (isOpen) {
-    } else if (isOpen) {
       setIsOpen(false);
     } else if (!isOpen) {
       setIsOpen(true);
-    } else if (!isOpen) {
     }
   };
   let containRef = useRef();
@@ -87,7 +87,7 @@ export default function Section1() {
   let handler = (event) => {
     console.log(containRef.current);
     console.log(event.target);
-    if (!containRef.current.contains(event.target)) {
+    if (containRef.current.contains(event.target)) {
       setIsOpen(false);
     }
   };
@@ -100,35 +100,31 @@ export default function Section1() {
   }, []);
 
   return (
-    <>
-      <div className="bg-green-100 section1">
+    <div className="relative overflow-hidden">
+      <div className="bg-green-100" ref={containRef}>
         <div
-          ref={containRef}
-          className={`sticky md:h-screen h-[100vh] w-2/3 bg-green-100 bg-contain secContainer bg-no-repeat ${
-            !isOpen ? `mx-auto` : `mx-0`
-          }`}
+          className={`relative bg-center h-[100vh] lg:mx-64 md:48 bg-contain bg-no-repeat 
+          ${ !isOpen ? `translate-x-0` : `-translate-x-[34vw]`}
+          ease-in-out duration-700`}
           style={{ backgroundImage: `url(${bg})` }}
         >
-          {detailsConfig.map((item, index) => (
-            <div className={item.className} key={index}>
-              <span className={item.classTitle}>{item.title}</span>
-
-              <Detailed
-                handleOpen={handleSideBarOpen}
-                icon={item.icon}
-                id={item.id}
-                isOpen={isOpen}
-              />
-            </div>
-          ))}
+          <div className="iconContainer h-full w-full flex justify-center items-center">
+            {detailsConfig.map((item, index) => (
+              <div className={item.className} key={index}>
+                <span className={item.classTitle}>{item.title}</span>
+                <Detailed
+                  handleOpen={handleSideBarOpen}
+                  icon={item.icon}
+                  id={item.id}
+                  isOpen={isOpen}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-        {sidebarText ? (
-          <>
-            <SideBar isOpen={isOpen} text={sidebarText} />
-          </>
-        ) : null}
       </div>
+      <SideBar isOpen={isOpen} text={sidebarText} handleOpen={handleSideBarOpen}/>
       <DialogBoxMobile />
-    </>
+    </div>
   );
 }

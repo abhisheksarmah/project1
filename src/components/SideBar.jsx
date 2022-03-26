@@ -2,25 +2,23 @@ import React from "react";
 import { Button } from "primereact/button";
 
 export default function SideBar(props) {
-  const handleSideBarOpen = () => {
-    props.handleOpen(props.id);
-  };
   return (
-    <>
-      {props.isOpen ? (
+    <div className={`absolute top-0 right-0 bg-green-200 w-[34vw] p-3 h-[100vh] ${
+      props.isOpen ? "translate-x-0" : "translate-x-full"
+    } ease-in-out duration-700`}>
+      <div className="flex justify-end pb-3">
         <Button
-          onClick={handleSideBarOpen}
+          onClick={(e) => {
+            e.stopPropagation();
+            props.handleOpen()
+          }}
           icon="pi pi-times"
-          className="p-button-rounded p-button-secondary p-button-text p-2 z-10 absolute -bottom-[2090px] right-4"
+          className="focus:outline-none p-button-rounded p-button-secondary p-button-text"
         />
-      ) : null}
-      <div
-        className={`-bottom-[2772px] absolute right-0 bg-green-200 w-[34vw] pt-6 px-3 h-[100vh] ${
-          props.isOpen ? "translate-x-0" : "translate-x-full"
-        } ease-in-out duration-700`}
-      >
+      </div>
+      <div>
         <h1>{props.text}</h1>
       </div>
-    </>
+    </div>
   );
 }
