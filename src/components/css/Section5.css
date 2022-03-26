@@ -9,6 +9,7 @@
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
   .section5 {
     margin-top: 35px !important;
+    height: 100vh;
     width: 100vw !important;
     padding: 0 25px !important;
   }

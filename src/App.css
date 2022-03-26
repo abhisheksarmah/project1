@@ -134,6 +134,9 @@ div.sections1 {
     left: 35px;
     top: 170px;
   }
+  div.p-component {
+    width: 100% !important;
+  }
 }
 @media only screen and (min-device-width: 400px) and (max-device-width: 680px) and (-webkit-min-device-pixel-ratio: 2) {
   .sticky {

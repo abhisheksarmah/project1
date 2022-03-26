@@ -1,0 +1,42 @@
+.icons1 {
+  display: none;
+}
+.icons2 {
+  display: none;
+}
+.icons3 {
+  display: none;
+}
+.icons4 {
+  display: none;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .icons1 {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    right: 160px;
+    bottom: -1438px;
+  }
+  .icons2 {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    right: 120px;
+    bottom: -1495px;
+  }
+  .icons3 {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    right: 120px;
+    bottom: -1555px;
+  }
+  .icons4 {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    right: 160px;
+    bottom: -1608px;
+  }
+}

@@ -10,8 +10,8 @@ import Detailed from "./details/Detailed";
 import icon1 from "../Assets/images/Classroom Learning.png";
 import icon2 from "../Assets/images/Experiential Learning.png";
 import icon4 from "../Assets/images/Junior Green Compass +.png";
-import { Dialog } from "primereact/dialog";
 import SideBar from "./SideBar";
+import DialogBoxMobile from "./Mobile/DialogBoxMobile";
 
 const detailsConfig = [
   {
@@ -70,23 +70,7 @@ const detailsConfig = [
 
 export default function Section1() {
   const [isOpen, setIsOpen] = useState(false);
-  const [displayPosition, setDisplayPosition] = useState(false);
-  const [position, setPosition] = useState("center");
   const [sidebarText, setSidebarText] = useState(null);
-
-  const dialogFuncMap = {
-    displayPosition: setDisplayPosition,
-  };
-  const onClick = (name, position) => {
-    dialogFuncMap[`${name}`](true);
-
-    if (position) {
-      setPosition(position);
-    }
-  };
-  const onHide = (name) => {
-    dialogFuncMap[`${name}`](false);
-  };
 
   const handleSideBarOpen = (id) => {
     setSidebarText(detailsConfig.find((item) => item.id === id).text);
@@ -144,42 +128,7 @@ export default function Section1() {
           </>
         ) : null}
       </div>
-      <div className="sections1 pt-50 bg-green-100">
-        <div
-          className={`sticky md:h-screen h-[400px] w-2/3 mr-32  bg-green-100 bg-contain secContainer bg-no-repeat `}
-          style={{ backgroundImage: `url(${bg})` }}
-        >
-          {detailsConfig.map((item, index) => (
-            <div className={item.className} key={index}>
-              <span className={item.classTitle}>{item.title}</span>
-              <div onClick={() => onClick("displayPosition", "right")}>
-                <Detailed icon={item.icon} text={item.text} />
-              </div>
-              <Dialog
-                visible={displayPosition}
-                position={position}
-                modal
-                className="h-[80px] fixed mx-auto w-screen "
-                onHide={() => onHide("displayPosition")}
-                draggable={false}
-                resizable={false}
-              >
-                <div className="flex justify-center"></div>
-                <p className="m-0">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </p>
-              </Dialog>
-            </div>
-          ))}
-        </div>
-      </div>
+      <DialogBoxMobile />
     </>
   );
 }

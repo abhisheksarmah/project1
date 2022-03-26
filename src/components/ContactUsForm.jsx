@@ -5,6 +5,7 @@ import categories from "../data/categories.data";
 import { RadioButton } from "primereact/radiobutton";
 import { Checkbox } from "primereact/checkbox";
 import { Tooltip } from "primereact/tooltip";
+import "./css/ContactUs.css";
 
 export default class ContactUsForm extends React.Component {
   constructor() {
@@ -425,7 +426,7 @@ export default class ContactUsForm extends React.Component {
           id={`contact-us-form`}
           className="flex flex-col-auto justify-center content-around items-center opacity-100"
         >
-          <form className="bg-primary-color-100 rounded-md flex flex-col gap-3 w-full w-fill px-2 sm:px-4 md:px-8 lg:px-10 py-8">
+          <form className="bg-primary-color-100 contacts rounded-md flex flex-col gap-3 w-full w-fill px-2 sm:px-4 md:px-8 lg:px-10 py-8">
             <div
               className={`w-full flex flex-col md:flex-row gap-3 md:gap-4 justify-start content-start items-start`}
             >
