@@ -20,6 +20,9 @@
 div.sections1 {
   display: none;
 }
+.section1 {
+  padding: 100px 0 !important;
+}
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
   .sticky {
@@ -86,9 +89,9 @@ div.sections1 {
     height: 300px;
   }
   .curve {
-    bottom: 0;
+    bottom: -10px;
     width: 100% !important;
-    height: 93px;
+    height: 100px;
   }
   .bn1 {
     width: 100% !important;

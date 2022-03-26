@@ -24,7 +24,7 @@ export default function DialogBoxMobile() {
       {/* icon1 */}
       {!isOpen ? (
         <>
-          <div onClick={() => setIsOpen(!isOpen)}>
+          <div onClick={() => setIsOpen(!isOpen)} className="btnico">
             <img src={icon1} alt="icon1" className="absolute icons1 " />
           </div>
         </>
@@ -32,17 +32,16 @@ export default function DialogBoxMobile() {
         <>
           <div
             onClick={() => setIsOpen(!isOpen)}
-            className="p-button-rounded p-button-secondary p-button-text p-2 z-10 absolute -bottom-[1390px] left-0 z-50"
+            className="p-button-rounded   p-button-secondary p-button-text p-2 z-10 absolute -bottom-[1390px] left-0 z-50"
           >
-            <i className="pi pi-angle-left" style={{ fontSize: "2em" }}></i>
+            <i className="pi pi-angle-left " style={{ fontSize: "2em" }}></i>
           </div>
-          <div onClick={() => setIsOpen(!isOpen)}>
-            <img src={icon1} alt="icon1" className="absolute icons1" />
-          </div>
+
           <div
-            className={`right-0 absolute bg-green-500 dialog z-10 -bottom-[1676px] w-[100%] h-[335px] p-10 ${
+            id="model"
+            className={`right-0 absolute open bg-green-500 dialog z-10 -bottom-[1676px] w-[100%] h-[335px] p-10 ${
               isOpen ? `translate-x-0` : `translate-x-full`
-            }ease-in-out duration-1000`}
+            }`}
           >
             <div className="flex justify-center">
               <img src={icon1} alt="icons" className="w-[100px] h-[100px]" />
@@ -64,11 +63,10 @@ export default function DialogBoxMobile() {
           >
             <i className="pi pi-angle-left" style={{ fontSize: "2em" }}></i>
           </div>
-          <div onClick={() => setIsOpen2(!isOpen2)}>
-            <img src={icon1} alt="icon1" className="absolute icons1" />
-          </div>
+
           <div
-            className={`right-0 absolute bg-green-500 dialog -bottom-[1676px] z-10 w-[100%] h-[335px] p-10 ${
+            id="model"
+            className={`right-0 absolute open bg-green-500 dialog -bottom-[1676px] z-10 w-[100%] h-[335px] p-10 ${
               isOpen2 ? `translate-x-0` : `translate-x-full`
             }ease-in-out duration-1000`}
           >
@@ -93,11 +91,10 @@ export default function DialogBoxMobile() {
           >
             <i className="pi pi-angle-left" style={{ fontSize: "2em" }}></i>
           </div>
-          <div onClick={() => setIsOpen3(!isOpen3)}>
-            <img src={icon3} alt="icon3" className="absolute icons3" />
-          </div>
+
           <div
-            className={`right-0 absolute bg-green-500 dialog -bottom-[1676px] z-10 w-[100%] h-[335px] p-10 ${
+            id="model"
+            className={`right-0 open absolute bg-green-500 dialog -bottom-[1676px] z-10 w-[100%] h-[335px] p-10 ${
               isOpen3 ? `translate-x-0` : `translate-x-full`
             }ease-in-out duration-1000`}
           >
@@ -122,11 +119,10 @@ export default function DialogBoxMobile() {
           >
             <i className="pi pi-angle-left" style={{ fontSize: "2em" }}></i>
           </div>
-          <div onClick={() => setIsOpen4(!isOpen4)}>
-            <img src={icon4} alt="icon4" className="absolute icons4" />
-          </div>
+
           <div
-            className={`right-0 absolute bg-green-500 dialog -bottom-[1676px] z-10 w-[100%] h-[335px] p-10 ${
+            id="model"
+            className={`right-0  open absolute bg-green-500 dialog -bottom-[1676px] z-10 w-[100%] h-[335px] p-10 ${
               isOpen4 ? `translate-x-0` : `translate-x-full`
             }ease-in-out duration-1000`}
           >

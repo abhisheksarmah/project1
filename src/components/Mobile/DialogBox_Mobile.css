@@ -39,4 +39,29 @@
     right: 160px;
     bottom: -1608px;
   }
+  #model.open {
+    animation: open 1s forwards !important;
+  }
+
+  @keyframes open {
+    0% {
+      transform: translate(-0%, -0%) scale(0);
+    }
+  }
+  .close {
+    animation-duration: 3s;
+    animation-name: slidein;
+    animation-iteration-count: 1;
+  }
+  @keyframes slidein {
+    from {
+      margin-left: 10%;
+      width: 100%;
+    }
+
+    to {
+      margin-left: 0%;
+      width: 80%;
+    }
+  }
 }
